@@ -1,0 +1,12 @@
+{
+  "name": "12_import_modules",
+  "version": "1.0.0",
+  "description": "",
+  "main": "math.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pawan",
+  "license": "ISC",
+  "type": "module"
+}
