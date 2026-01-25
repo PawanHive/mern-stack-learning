@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram</title>
+</head>
+<body>
+    <h2>This page belongs to @ <%= username %></h2>
+    <button>Follow</button>
+    <button>Message</button>
+
+    <h3>Accounts that follows your: </h3>
+
+    <ul>
+        <% for (const name of followers) { %>
+            <%# <li>name</li> %>                      <%# here '<li> name </li>' will just behave like html li tag and name will behave like just text not variable %>
+            <li> <%= name %> </li>                    <%# here 'name' will behave like variable %>
+        <% } %>
+    </ul>
+</body>
+</html>

@@ -1,16 +1,11 @@
 const express = require("express");
 
 const app = express();
-const path = require("path");
 
-let port = 8080;
-
-app.set("view engine", "ejs");                          // 'EJS' package automatically 'require()' by Express, so we no need to 'require' it explicitally
-app.set("views", path.join(__dirname, "/views"));
+let port = 8080; 
 
 app.get("/", (req, res) => {
-    // res.send("this is home");
-    res.render("home.ejs");                            // 'res.render' sending whole file (home.ejs) which is in 'view' folder... express accessing it automatically.
+    res.send("this is home");
 });
 
 app.listen(port, () => {
