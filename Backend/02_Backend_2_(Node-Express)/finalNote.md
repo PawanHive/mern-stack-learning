@@ -34,5 +34,5 @@ app.listen(port, () => {
 });
 
 ```
-8. STEP: `npm run dev`
+8. STEP: `npm run dev` or `nodemon index.js`
     => start server

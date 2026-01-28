@@ -23,7 +23,7 @@ It tells the client to make a **new request** to a different route.
 
 ### Example
 ```js
-app.post("/posts", (req, res) => {
+    app.post("/posts", (req, res) => {
     posts.push(req.body);      // save form data
     res.redirect("/posts");   // redirect to posts page
 });
