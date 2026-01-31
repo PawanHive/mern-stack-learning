@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Users</title>
+    <style>
+        table, th, td, tr {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>All Users List</h1>
+
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Email</th>
+        </tr>
+        <!-- <tr>
+            <td>hello</td>
+            <td>hello</td>
+            <td>hello</td>
+        </tr> -->
+        <% for (let user of users) { %>
+            <tr>
+                <td><%= user.id %></td>
+                <td><%= user.username %></td>
+                <td><%= user.email %></td>
+            </tr>
+            <%}%>
+    </table>
+</body>
+
+</html>

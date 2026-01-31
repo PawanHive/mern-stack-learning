@@ -36,15 +36,18 @@ let posts = [                                       // replica of database
 
 ]
 
+// READ ALL POSTS (Used to display the main posts page)
 app.get("/posts", (req, res) => {
     // res.send("server working well")
     res.render("index.ejs", { posts })                  // 'posts' basically a above array of database
 })
 
+// SHOW FORM TO CREATE NEW POST (Used to show the form for creating a new post)
 app.get("/posts/new", (req, res) => {
     res.render("new.ejs")
 });
 
+// CREATE NEW POST ( Used to submit form data and create a new post)
 app.post("/posts", (req, res) => {                      // This route handles form submission using POST method
     // console.log(req.body)
     let {username, content} = req.body;                 // req.body contains data sent from the form
@@ -54,6 +57,7 @@ app.post("/posts", (req, res) => {                      // This route handles fo
     res.redirect("/posts")                          // automatically send to GET/posts ... browser makes a new GET request to /posts
 });
 
+//  SHOW SINGLE POST (Used to view ONE specific post using its id)
 app.get("/posts/:id", (req, res) => {               
     let { id } = req.params;                        // Get id from URL
     let post = posts.find((p) => id === p.id)       // Find matching post
@@ -63,6 +67,7 @@ app.get("/posts/:id", (req, res) => {
     res.render("show.ejs", { post })
 });
 
+//  UPDATE POST ( Used to update content of an existing post)
 app.patch("/posts/:id", (req, res) => {
     let { id } = req.params;                                // Extract post id from URL
     let newContent = req.body.content;                      // Get updated content from form input
@@ -73,12 +78,14 @@ app.patch("/posts/:id", (req, res) => {
     res.redirect("/posts")                                  // Redirect back to all posts page
 });
 
+//  SHOW EDIT FORM (Used to show edit form for a specific post)
 app.get("/posts/:id/edit", (req, res) => {
     let { id } = req.params;
     let post = posts.find((p) => id === p.id)
     res.render("edit.ejs", { post })                        // Render edit page with post data
 });
 
+// DELETE POST (Used to delete a specific post)
 app.delete("/posts/:id", (req, res) => {
     let { id } = req.params;
     posts = posts.filter((p) => id !== p.id)                // Remove the post with matching id.... remianing post again assign to 'posts' that why we remove 'let' keyword from here

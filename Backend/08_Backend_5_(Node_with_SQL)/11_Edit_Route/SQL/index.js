@@ -1,0 +1,95 @@
+const { faker } = require('@faker-js/faker');
+const mysql = require('mysql2');
+const express = require("express");
+const app = express();
+const path = require("path");
+const methodOverride = require('method-override')
+
+let port = 1100;
+
+app.use(methodOverride('_method'))
+app.use(express.urlencoded({ extended: true }));
+
+app.set("view engine", "ejs")
+app.set("views", path.join(__dirname, "views"))
+
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  database: 'delta_app',
+  password: "Pawan@MySQL9500/"
+});
+
+let getRandomUser = () => {
+  return [                                      
+    faker.string.uuid(),
+    faker.internet.username(),
+    faker.internet.email(),
+    faker.internet.password(),
+  ];
+};
+
+// Home Page Route
+app.get("/", (req, res) => {
+  let q = `SELECT count(*) FROM user`;            
+  try {
+    connection.query(q, (err, result) => {          
+      if(err) throw err;                    
+      // console.log(result[0]["count(*)"])            
+      let count = result[0]["count(*)"]
+      res.render("home.ejs", { count })
+    });
+  } catch(err) {
+    console.log(err);
+    res.send("some error in DB")
+  }
+});
+
+// Show user page Route
+
+app.get("/user", (req, res) => {
+    let q = `SELECT * FROM user`;            
+  try {
+    connection.query(q, (err, users) => {          
+      if(err) throw err;                    
+      // console.log(users);            
+      res.render("showuser.ejs", { users })
+    });
+  } catch(err) {
+    console.log(err);
+    res.send("some error in DB")
+  }
+})
+
+//Edit Route
+app.get("/user/:id/edit", (req, res) => {
+  let { id } = req.params;
+      let q = `SELECT * FROM user WHERE id = '${id}'`;            
+  try {
+    connection.query(q, (err, users) => {          
+      if(err) throw err;                    
+      // console.log(users[0]);            
+      let user = users[0];
+      res.render("edit.ejs", { user })
+    });
+  } catch(err) {
+    console.log(err);
+    res.send("some error in DB")
+  }
+  
+})
+
+
+// UPDATE (DB) Route
+
+app.patch("/user/:id", (req, res) => {
+  res.send("Database Updated")
+})
+
+app.listen(port, (req, res) => {
+  console.log(`Listening on port ${port}`)
+})
+
+
+
+// connection.end();
