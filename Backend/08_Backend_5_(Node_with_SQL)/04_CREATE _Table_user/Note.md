@@ -45,7 +45,7 @@ SOURCE path/to/schema.sql;
 - Use forward slashes `/`
 - End with semicolon `;`
 
-## 3: Use relative path (inside project folder)
+## Way 3: Use relative path (inside project folder)
 
 If your terminal is already in the folder:
 ```bash
