@@ -19,7 +19,7 @@ mongod --dbpath C:\data\db
 mongosh
 ```
 
-### STEP 1: Verify inside mongosh
+### STEP 2: Verify inside mongosh
 You should see something like:
 ```text
 test>

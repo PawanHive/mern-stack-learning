@@ -11,13 +11,13 @@ db.student.find()
 Returns only documents that match the condition.
 Example:
 ```js
-db.student.find()
+db.student.find({name: "pawan"})
 ```
 3. `db.collection.findOne( {key: value} )`   
 Returns only ONE matching document (the first one MongoDB finds).
 Example:
 ```js
-db.collection.findOne({ key: value })
+db.student.findOne({ name: "pawan" })
 ```
 
 ## #Sigma Prime Note

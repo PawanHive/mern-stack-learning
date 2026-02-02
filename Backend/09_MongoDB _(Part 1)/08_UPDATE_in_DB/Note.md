@@ -166,8 +166,9 @@ They are used inside **Aggregation Pipeline**.
 Aggregation is used when you want to **transform the shape of documents**.
 
 Syntax:
+```bash
 db.collection.aggregate([ stage1, stage2, ... ])
-
+```
 ---
 
 ## 1. $addFields

@@ -10,7 +10,7 @@ launched.
 
 //===================================================================
 
-// console.log(process.argv);
+console.log(process.argv);
 /*
 output:
 [
@@ -44,6 +44,7 @@ let args = process.argv;
 for (let i = 2; i < args.length; i++) {
     console.log("hello to", args[i])
 }
+
 /*output:
 hello to mohan
 hello to sohan
@@ -112,3 +113,8 @@ b. process.on(event, callback)
         console.log('Process ended')
         })
 */
+
+
+console.log(process.pid)
+console.log(process.platform)
+console.log(process.cwd())
