@@ -18,17 +18,46 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", userSchema);
 
-//-------------------- UPDATE -------------------------------------------
-// UPDATE many
-User.updateMany({ age: { $gt: 48 } }, { age: 55 })
+// --------------------------- UPDATE & return UPDATED document ----------------------------
+
+// .findByIdAndUpdate()
+User.findByIdAndUpdate('69806c3e18393e032e3257d8', { age: 100 }, { new: true })             // updated document using 'id'
   .then((res) => {
-    console.log(res);                                 // print object with metadata ... this will not return update data/document
+    console.log(res);
   })
   .catch((err) => {
     console.log(err);
-  });
+  })
 
-// UPDATE one
+// //  .findOneAndUPdate() - use  '{ new: true }' to return UPDATED document as (options)
+// User.findOneAndUpdate({ name: "Bruce" }, { age: 42 }, { new: true })    // now it will return UPDATED document
+//   .then((res) => {
+//     console.log(res);
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   })
+
+// // // .findOneAndUPdate() 
+// User.findOneAndUpdate({ name: "Bruce" }, { age: 35 })                // by default it return OLD document
+//   .then((res) => {
+//     console.log(res);
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   })
+
+// //-------------------- UPDATE -------------------------------------------
+// // UPDATE many
+// User.updateMany({ age: { $gt: 48 } }, { age: 55 })
+//   .then((res) => {
+//     console.log(res);                                 // print object with metadata ... this will not return update data/document
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
+
+// // UPDATE one
 // User.updateOne({ name: "Bruce" }, { age: 49 })
 //   .then((res) => {
 //     console.log(res);                                   // print object with metadata ... this will not return update data/document
