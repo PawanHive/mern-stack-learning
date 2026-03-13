@@ -1,14 +1,12 @@
+const express = require("express"); // REMEMEBER: here 'express' is basically a function
+const app = express(); // this 'app' variable will help us to create server side application
 
+let port = 6000; // 3000
 
-const express = require("express");                      // REMEMEBER: here 'express' is basically a function
-const app = express();                                   // this 'app' variable will help us to create server side application
-
-let port = 6000;    // 3000
-
-app.listen(port, () => {                                 // app.listen() is used to start the server and wait for client requests. it is most useful function
-    console.log(`app is listening on port ${port}`);
+app.listen(port, () => {
+  // app.listen() is used to start the server and wait for client requests. it is most useful function
+  console.log(`app is listening on port ${port}`);
 });
-
 
 //------------------------------------------------------------------------------------------------------------------------
 // ## Handling Request & Sending Response:
