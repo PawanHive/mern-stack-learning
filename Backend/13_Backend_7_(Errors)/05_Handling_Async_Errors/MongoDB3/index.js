@@ -7,7 +7,7 @@ const ExpressError = require("./ExpressError");
 
 const Chat = require("./models/chat.js");
 
-let port = 1010;
+let port = 5050;
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));

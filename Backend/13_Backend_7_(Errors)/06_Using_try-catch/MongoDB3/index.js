@@ -7,7 +7,7 @@ const ExpressError = require("./ExpressError");
 
 const Chat = require("./models/chat.js");
 
-let port = 1010;
+let port = 6060;
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -28,9 +28,13 @@ async function main() {
 
 // Index Route
 app.get("/chats", async (req, res) => {
-  let chats = await Chat.find();
-  // console.log(chats)
-  res.render("index.ejs", { chats });
+  try {
+    let chats = await Chat.find();
+    // console.log(chats)
+    res.render("index.ejs", { chats });
+  } catch (err) {
+    next(err);
+  }
 });
 
 // New Chat Route
@@ -40,66 +44,78 @@ app.get("/chats/new", (req, res) => {
 });
 
 // POST Route of NewChat
-app.post("/chats", (req, res) => {
-  let { from, to, msg } = req.body; // to parse this data we need to add this line in this code --- app.use(express.urlencoded({ extended: true }));
-  let newChat = new Chat({
-    from: from,
-    to: to,
-    msg: msg,
-    created_at: new Date(),
-  });
-  newChat // here we used .then() but we an also use 'async & await'
-    .save()
-    .then((res) => {
-      console.log("Data saved successfully");
-    })
-    .catch((err) => {
-      console.log(err);
+app.post("/chats", async (req, res) => {
+  try {
+    let { from, to, msg } = req.body; // to parse this data we need to add this line in this code --- app.use(express.urlencoded({ extended: true }));
+    let newChat = new Chat({
+      from: from,
+      to: to,
+      msg: msg,
+      created_at: new Date(),
     });
-  // console.log(newChat)
-  res.redirect("/chats");
+    await newChat.save();
+    res.redirect("/chats");
+  } catch (err) {
+    next(err);
+  }
 });
 
 //new - Show Route
 app.get("/chats/:id", async (req, res, next) => {
-  let { id } = req.params;
-  let chat = await Chat.findById(id);
-  // if (!chat) {
-  //   throw new ExpressError(404, "Chat not found");    // when the error is called asyncronously (means when error invokes in async route) then express didn't call next(), because of that app crashed, thats why we need to wrap our error handler in next(errhandler)
-  // }
-  // if (!chat) {
-  //   next(new ExpressError(404, "Chat not found"));      // request route: http://localhost:1010/chats/69b4b00672f7e88eac1deec6        here we change last 2 letter from 5e to c6 and also removed ? mark at the end, (length) of the id should be same otherwise we will get mongoose syntax error
-  // }
-  res.render("edit.ejs", { chat });
+  try {
+    let { id } = req.params;
+    let chat = await Chat.findById(id);
+    // if (!chat) {
+    //   throw new ExpressError(404, "Chat not found");    // when the error is called asyncronously (means when error invokes in async route) then express didn't call next(), because of that app crashed, thats why we need to wrap our error handler in next(errhandler)
+    // }
+    if (!chat) {
+      next(new ExpressError(404, "Chat not found")); // request route: http://localhost:1010/chats/69b4b00672f7e88eac1deec6        here we change last 2 letter from 5e to c6 and also removed ? mark at the end, (length) of the id should be same otherwise we will get mongoose syntax error
+    }
+    res.render("edit.ejs", { chat });
+  } catch (err) {
+    next(err);
+  }
 });
 
 // Edit Chat Route
 app.get("/chats/:id/edit", async (req, res) => {
-  let { id } = req.params;
-  let chat = await Chat.findById(id);
-  console.log(chat);
-  res.render("edit.ejs", { chat });
+  try {
+    let { id } = req.params;
+    let chat = await Chat.findById(id);
+    console.log(chat);
+    res.render("edit.ejs", { chat });
+  } catch (err) {
+    next(err);
+  }
 });
 
 // Update Chat Route
 app.put("/chats/:id", async (req, res) => {
-  let { id } = req.params;
-  let { msg: newMsg } = req.body;
-  let updatedChat = await Chat.findByIdAndUpdate(
-    id,
-    { msg: newMsg },
-    { runValidatiors: true, new: true },
-  );
-  res.redirect("/chats");
-  // console.log(updatedChat)
+  try {
+    let { id } = req.params;
+    let { msg: newMsg } = req.body;
+    let updatedChat = await Chat.findByIdAndUpdate(
+      id,
+      { msg: newMsg },
+      { runValidatiors: true, new: true },
+    );
+    res.redirect("/chats");
+    // console.log(updatedChat)
+  } catch (err) {
+    next(err);
+  }
 });
 
 // DELETE Route
 app.delete("/chats/:id", async (req, res) => {
+  try {
   let { id } = req.params;
   let deletedchat = await Chat.findByIdAndDelete(id);
   console.log(deletedchat);
   res.redirect("/chats");
+  } catch (err) {
+    next (err);
+  }
 });
 
 app.get("/", (req, res) => {
