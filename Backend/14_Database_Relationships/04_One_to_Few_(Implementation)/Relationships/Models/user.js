@@ -1,3 +1,9 @@
+// ============================================
+// Example: User & Addresses (One-to-Few)
+// Approach: Embedding (Child stored inside Parent)
+// ============================================
+
+
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
@@ -11,10 +17,10 @@ async function main() {
   await mongoose.connect("mongodb://127.0.0.1:27017/relationDemo"); // DatabaseName = 'relationDemo'
 }
 
-// defining users Schema
+// defining users Schema (parent / one-side)
 const userSchema = new Schema({
-  username: String,
-  addresses: [
+  username: String,                       
+  addresses: [                              // (Child / many-side) - Stored directly inside (parent)
     {
       _id: false,
       location: String,
@@ -26,6 +32,7 @@ const userSchema = new Schema({
 //  model
 const User = mongoose.model("User", userSchema); //collectionName = 'users'
 
+// add data to MongoDB Database:
 const addUsers = async () => {                  // used async function because we have to use await to save() data to database.
   let user1 = new User({
     username: "Sherlockholmes",
@@ -51,7 +58,7 @@ addUsers();
 
 // Note:
 /*
-Here: 
+Here: OUTPUT:
 MongodB by Default add (_id:) field to userSchema as well as "addresses" also 
 like this Example:
     {
