@@ -20,10 +20,10 @@ const sessionOptions = {
 // express Session Middleware    // because of this line: automatically create sessionId, sends cookie, tracks user.
 app.use(session(sessionOptions));
 
-// connect-flash middleware
+// connect-flash buit-In-middleware
 app.use(flash());
 
-// Middleware to make flash messages available in all views
+// custom-middleware to make flash messages available in all views
 app.use((req, res, next) => {
   res.locals.successMsg = req.flash("success");
   res.locals.errorMsg = req.flash("error");

@@ -37,7 +37,7 @@
 ## One-Line Summary
 connect-flash is used to pass short-lived messages between requests using session in Express apps.
 
-# -----------------------------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------------
 
 # Using `connect-flash`
 

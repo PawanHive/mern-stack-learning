@@ -36,7 +36,7 @@ app.use(session(sessionOptions));
 // 👉 Enables req.flash() to store temporary messages
 app.use(flash());
 
-// Middleware to make flash messages available in all views
+// custom-middleware to make flash messages available in all views
 app.use((req, res, next) => {
   res.locals.successMsg = req.flash("success"); // success messages
   res.locals.errorMsg = req.flash("error"); // error messages
