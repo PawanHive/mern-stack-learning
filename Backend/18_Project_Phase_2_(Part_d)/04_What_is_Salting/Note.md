@@ -1,4 +1,8 @@
-# 🧂 What is Salting?
+# Sigma Note:
+## Salting
+**Pasword salting is a technique to protect passwords stored in databases by adding a string of 32 or more characters and then hashing them.**
+
+# #1: 🧂 What is Salting?
 
 ---
 
