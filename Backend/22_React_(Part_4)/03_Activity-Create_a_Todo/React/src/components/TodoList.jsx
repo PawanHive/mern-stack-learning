@@ -6,7 +6,9 @@ export default function TodoList() {
   let [newTodo, setNewTodo] = useState("");
 
   let addNewTask = () => {
-    setTodos([...todos, { task: newTodo, id: uuidv4()} ]);
+    setTodos((prevTodos) => {
+      return [...prevTodos, { task: newTodo, id: uuidv4() }]
+    });
     setNewTodo(""); // this will make input empty after clicking on add task
     // console.log("we have to add new task to do")
   };
@@ -16,6 +18,18 @@ export default function TodoList() {
     setNewTodo(event.target.value);
     // console.log(event.target.value)
   };
+
+  // Delete TODO 
+  let deleteTodo = (id) => { 
+    // (it will take id as argument and find what exactly have to delete)
+    // mostly filter() method used to delete element from array in react and this method always return new of copy of array
+    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id != id))
+
+    // let copy = todos.filter((todo) => todo.id != id)
+    // console.log(copy)
+    // console.log(id)
+    // console.log("Task to be deleted")
+  }
 
   return (
     <div>
@@ -34,8 +48,13 @@ export default function TodoList() {
 
       <h4>Todo List</h4>
       <ul>
+        {/* always map are used to render element from array */}
         {todos.map((todo) => {
-          return <li key={todo.id}>{todo.task}</li>;
+          return <li key={todo.id}>
+            <span>{todo.task}</span>
+            &nbsp; &nbsp;
+            <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+          </li>;
         })}
       </ul>
     </div>

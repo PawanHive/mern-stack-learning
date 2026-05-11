@@ -34,3 +34,19 @@ setTodos((prevTodos) => [...prevTodos, newTodo]);
 ## 🚀 Rule
 
 👉 If new state depends on previous state, always use callback form.
+
+# -------------------------------------------------------------------------------------------------------
+
+## Updating Arrays in State
+
+When dealing with arrays inside React state, avoid the methods in the left column,
+and instead prefer the methods in the right column:
+
+| Operation  | ❌ Avoid (mutates the array)       | ✅ Prefer (returns a new array)          |
+|------------|-----------------------------------|------------------------------------------|
+| adding     | `push`, `unshift`                 | `concat`, `[...arr]` spread syntax       |
+| removing   | `pop`, `shift`, `splice`          | `filter`, `slice`                        |
+| replacing  | `splice`, `arr[i] = ...`assignment| `map`                                    |
+| sorting    | `reverse`, `sort`                 | copy the array first                     |
+
+> Alternatively, you can use **Immer** which lets you use methods from both columns.
