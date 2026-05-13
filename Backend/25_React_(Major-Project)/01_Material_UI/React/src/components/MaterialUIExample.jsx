@@ -6,7 +6,7 @@ import Stack from '@mui/material/Stack';
 
 
 
-export default function WeatherApp() {
+export default function MaterialUIExample() {
   let handleClick = () => {
     console.log("click activated");
   };
