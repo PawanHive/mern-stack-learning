@@ -232,3 +232,16 @@ MUI supports responsive design, but you must:
 2. Understand behavior
 3. Customize later
 
+
+
+# -------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------
+
+# #3: Weather API KEY
+
+**Weather API WEBSITE**:[https://openweathermap.org/api/current?collection=current_forecast](https://openweathermap.org/api/current?collection=current_forecast)
+
+**Weather API Link**:[https://openweathermap.org/api/current?collection=current_forecast#geocoding](https://openweathermap.org/api/current?collection=current_forecast#geocoding)
+
+**Weather API KEY**:[https://home.openweathermap.org/api_keys](https://home.openweathermap.org/api_keys)
+
