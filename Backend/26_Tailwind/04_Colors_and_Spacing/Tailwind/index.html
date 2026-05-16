@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/input.css" />
+  </head>
+  <body>
+    <!-- border & border radius-->
+
+    <div class="bg-red-300 m-4 border-2 h-[200px]">One</div> <!--REMEMBER: if we have give value in px then use [] bracket around value then we can write value in different units, which will be valid,  but this is not recommended because it create own class every time means buddle size increase which can slow the system-->
+    <div class="bg-red-300 m-4 rounded-xl">Two</div>
+    <div class="bg-red-300 m-4 rounded border-[3px] border-rose-500">Three</div>
+
+    <hr />
+
+    <!-- space-between -->
+    <div class="flex space-x-28">
+      <!--space-y-4 = space in y-axis for 1rem-->
+      <div class="bg-red-300">One</div>
+      <div class="bg-red-300">Two</div>
+      <div class="bg-red-300">Three</div>
+    </div>
+    <hr />
+    <br />
+    <!-- flex justify -->
+    <div class="flex justify-between">
+      <!--space-y-4 = space in y-axis for 1rem-->
+      <div class="bg-red-300">One</div>
+      <div class="bg-red-300">Two</div>
+      <div class="bg-red-300">Three</div>
+    </div>
+
+    <!-- ------------------------------------------------------------------------------------------------------------- -->
+    <hr />
+
+    <h1 class="text-5xl mb-5">Learning Example</h1>
+    <!-- text color -->
+    <div class="text-red-500">This is a div</div>
+    <br />
+
+    <!-- background color -->
+    <div class="bg-yellow-300">This is a div</div>
+    <br />
+
+    <!-- Spacing: margin, padding, border-->
+    <div class="bg-purple-300 h-40 pt-6 m-20">
+      <!--h-50 = 50*4 = 200rem-->
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit magnam
+      recusandae nulla molestias eum numquam quas, consequuntur autem excepturi
+      fugiat quibusdam facilis odit ipsam at, provident, adipisci officia hic?
+      Fugit.
+    </div>
+
+    <br />
+
+    <div class="bg-red-300 h-40 py-4 my-5">
+      <!--h-50 = 50*4 = 200rem-->
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit magnam
+      recusandae nulla molestias eum numquam quas, consequuntur autem excepturi
+      fugiat quibusdam facilis odit ipsam at, provident, adipisci officia hic?
+      Fugit.
+    </div>
+  </body>
+</html>

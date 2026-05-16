@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+.box {
+  @apply bg-red-300 text-white m-4 border-2 rounded; /* this much style is common to every one who use class: "box"*/
+}
